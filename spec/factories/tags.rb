@@ -12,6 +12,5 @@
 FactoryGirl.define do
   factory :tag do
     sequence(:name) { |n| "sample-name-#{n}" }
-    item
   end
 end

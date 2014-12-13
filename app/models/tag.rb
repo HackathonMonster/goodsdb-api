@@ -10,7 +10,15 @@
 #
 
 class Tag < ActiveRecord::Base
-  belongs_to :item
+  has_and_belongs_to_many :items
 
-  validates :item, presence: true
+  def self.from_names(names)
+    return none if names.blank?
+    tags = where(arel_table[:name].in(names))
+    new_tags = names.to_set - tags.pluck(:name)
+    new_tags.each do |name|
+      tags << Tag.create(name: name)
+    end
+    tags
+  end
 end

@@ -3,13 +3,18 @@ class ItemsController < ApplicationController
   before_action :find_item
 
   def create
-    @item = current_user.items.build(item_params)
+    @item = current_user.items.build_from_attributes(item_params)
+    if @item.save
+      render :show
+    else
+      render json: @item.errors
+    end
   end
 
   private
 
   def item_params
-    params.require(:items).permit(:name, :pictures, :tags)
+    params.require(:item)
   end
 
   def find_item

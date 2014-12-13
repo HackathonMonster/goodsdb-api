@@ -12,7 +12,7 @@ The token is received on login.
 
 ## Items
 
-### `GET /items`
+### GET `/items`
 
 #### Request
 
@@ -43,12 +43,12 @@ The token is received on login.
         }],
         "pictures": [{
             "id": 1,
-            "url": "http://mysuperserver/mysuperimage.jp",
+            "image_url": "http://mysuperserver/mysuperimage.jp",
             "createdAt": "2014-12-13T14:49:15+09:00",
             "updatedAt": "2014-12-13T14:49:15+09:00"
         }, {
             "id": 2,
-            "url": "http://mysuperserver/mysuperimage2.jp",
+            "image_url": "http://mysuperserver/mysuperimage2.jp",
             "createdAt": "2014-12-13T14:49:15+09:00",
             "updatedAt": "2014-12-13T14:49:15+09:00"
         }]
@@ -56,7 +56,7 @@ The token is received on login.
 ]
 ```
 
-### `POST /items`
+### POST `/items`
 
 #### Request
 
@@ -64,22 +64,22 @@ The token is received on login.
 * Content-Type: `multipart/form-data`
 
 ```
-items[name] = "the-name"
-items[tags][] = "tag-1"
-items[tags][] = "tag-2"
-items[picture][] = FILE_1_CONTENT
-items[picture][] = FILE_2_CONTENT
+item[name] = "the-name"
+item[tags][] = "tag-1"
+item[tags][] = "tag-2"
+item[picture][] = FILE_1_CONTENT
+item[picture][] = FILE_2_CONTENT
 ```
 
 Android sample:
 
 ```java
 MultipartEntity data = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
-data.addPart("items[name]", new StringBody("the-name"));
-data.addPart("items[tags][]", new StringBody("tag-1"));
-data.addPart("items[tags][]", new StringBody("tag-2"));
-data.addPart("items[picture][]", new FileBody(new File("gimmethatfile.jpg")));
-data.addPart("items[picture][]", new FileBody(new File("gimmethatfile2.jpg")));
+data.addPart("item[name]", new StringBody("the-name"));
+data.addPart("item[tags][]", new StringBody("tag-1"));
+data.addPart("item[tags][]", new StringBody("tag-2"));
+data.addPart("item[picture][]", new FileBody(new File("gimmethatfile.jpg")));
+data.addPart("item[picture][]", new FileBody(new File("gimmethatfile2.jpg")));
 ```
 
 #### Response
@@ -106,12 +106,12 @@ data.addPart("items[picture][]", new FileBody(new File("gimmethatfile2.jpg")));
     }],
     "pictures": [{
         "id": 1,
-        "url": "http://mysuperserver/gimmethatfile.jp",
+        "image_url": "http://mysuperserver/gimmethatfile.jp",
         "createdAt": "2014-12-13T14:49:15+09:00",
         "updatedAt": "2014-12-13T14:49:15+09:00"
     }, {
         "id": 2,
-        "url": "http://mysuperserver/gimmethatfile2.jp",
+        "image_url": "http://mysuperserver/gimmethatfile2.jp",
         "createdAt": "2014-12-13T14:49:15+09:00",
         "updatedAt": "2014-12-13T14:49:15+09:00"
     }]
@@ -120,7 +120,7 @@ data.addPart("items[picture][]", new FileBody(new File("gimmethatfile2.jpg")));
 
 ## Authentication
 
-### POST '/login'
+### POST `/login`
 
 #### Request
 

@@ -14,7 +14,7 @@ require 'rails_helper'
 describe Picture, type: :model do
   subject(:picture) { create(:picture) }
 
-  it { is_expected.to respond_to(:url) }
+  it { is_expected.to respond_to(:image) }
 
   it { is_expected.to belong_to(:item) }
   it { is_expected.to validate_presence_of(:item) }

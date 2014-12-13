@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :picture do
-    sequence(:url) { |n| "http://example.com/dummy-url-#{n}" }
+    sequence(:image) { |n| "http://example.com/dummy-url-#{n}" }
     item
   end
 end

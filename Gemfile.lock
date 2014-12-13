@@ -75,6 +75,11 @@ GEM
     capistrano3-puma (0.8.3)
       capistrano (~> 3.0)
       puma (>= 2.6)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     coderay (1.1.0)
@@ -288,6 +293,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rbenv
   capistrano3-puma
+  carrierwave
   coffee-rails (~> 4.0.0)
   database_cleaner
   debase
