@@ -27,19 +27,38 @@ class Item < ActiveRecord::Base
       .having(ItemEvent.arel_table[:item_id].count.gt(0))
   end)
 
+  scope :found, -> { with_events.merge(ItemEvent.found) }
+  scope :lost, -> { with_events.merge(ItemEvent.lost) }
+
   scope :with_any_tag, (lambda do |tags|
     joins(:tags)
       .group(arel_table[:id], Tag.arel_table[:name], Tag.arel_table[:id])
       .having(Tag.arel_table[:name].in(tags))
   end)
 
-  def self.search(tags)
-    items = with_events.with_any_tag(tags).includes(:tags)
+  def self.search_items(items, tags)
+    items = items.with_any_tag(tags).includes(:tags)
     items.each do |item|
       tags = item.tags.map(&:name) # avoid DB query
       item.score = (tags.to_set & tags).size
     end
     items.sort { |x, y| x.score <=> y.score }
+  end
+
+  def self.search(tags, status = 'any')
+    case status
+    when 'lost' then search_lost(tags)
+    when 'found' then search_found(tags)
+    else search_items(with_events, tags)
+    end
+  end
+
+  def self.search_found(tags)
+    search_items(found, tags)
+  end
+
+  def self.search_lost(tags)
+    search_items(lost, tags)
   end
 
   def self.build_from_attributes(params)
