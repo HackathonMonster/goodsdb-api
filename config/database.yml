@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  username: goodsdb
+  password: 'foobar'
+
+development:
+  <<: *default
+  database: goodsdb_development
+
+test:
+  <<: *default
+  database: goodsdb_test
+
+production:
+  <<: *default
+  database: goodsdb_production
+  username: goodsdb
+  password: <%= ENV['GOODSDB_DATABASE_PASSWORD'] %>
