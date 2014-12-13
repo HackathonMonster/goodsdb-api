@@ -10,6 +10,7 @@
 #  profile_picture :string(255)
 #  facebook_id     :string(255)
 #  facebook_token  :string(255)
+#  token           :string(255)
 #  created_at      :datetime
 #  updated_at      :datetime
 #

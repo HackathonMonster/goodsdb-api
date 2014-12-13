@@ -52,10 +52,12 @@ ActiveRecord::Schema.define(version: 20141213064659) do
     t.string   "profile_picture"
     t.string   "facebook_id"
     t.string   "facebook_token"
+    t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "users", ["facebook_id"], name: "index_users_on_facebook_id", unique: true, using: :btree
+  add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
 end

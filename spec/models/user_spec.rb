@@ -10,6 +10,7 @@
 #  profile_picture :string(255)
 #  facebook_id     :string(255)
 #  facebook_token  :string(255)
+#  token           :string(255)
 #  created_at      :datetime
 #  updated_at      :datetime
 #
@@ -30,6 +31,8 @@ describe User, type: :model do
   it { is_expected.to have_many(:items) }
 
   it { is_expected.to validate_uniqueness_of(:facebook_id) }
+
+  its(:token) { is_expected.not_to be_nil }
 
   describe '#facebook_authenticate' do
     before(:each) { stub_facebook }

@@ -1,0 +1,19 @@
+defaults: &defaults
+  user:
+    dummy_facebook_data:
+      facebook_id: 'foobar'
+      facebook_token: 'barbaz'
+      info:
+        email: 'foo@foo.bar'
+        image: 'http://res.cloudinary.com/demo/image/facebook/billclinton.jpg'
+        first_name: 'Jack'
+        last_name: 'Joe'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

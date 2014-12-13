@@ -20,6 +20,10 @@ gem 'yajl-ruby'
 # Facebook
 gem 'koala'
 
+# Settings
+gem 'settingslogic'
+gem 'figaro'
+
 group :development, :test do
   gem 'jazz_hands', github: 'jkrmr/jazz_hands'
   gem 'pry-byebug'

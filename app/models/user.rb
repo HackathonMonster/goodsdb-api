@@ -10,6 +10,7 @@
 #  profile_picture :string(255)
 #  facebook_id     :string(255)
 #  facebook_token  :string(255)
+#  token           :string(255)
 #  created_at      :datetime
 #  updated_at      :datetime
 #
@@ -18,6 +19,8 @@ class User < ActiveRecord::Base
   has_many :items, foreign_key: 'owner_id'
 
   validates :facebook_id, uniqueness: true
+
+  before_create :generate_token
 
   def self.facebook_authenticate(facebook_id, facebook_token)
     graph = Koala::Facebook::API.new(facebook_token)
@@ -32,6 +35,13 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def generate_token
+    self.token = loop do
+      token = SecureRandom.urlsafe_base64(40)
+      break token unless User.exists?(token: token)
+    end
+  end
 
   def initialize_from_profile(profile)
     self.email           = profile['email']
