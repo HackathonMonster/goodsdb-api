@@ -17,6 +17,8 @@
 class User < ActiveRecord::Base
   has_many :items, foreign_key: 'owner_id'
 
+  validates :facebook_id, uniqueness: true
+
   def self.facebook_authenticate(facebook_id, facebook_token)
     graph = Koala::Facebook::API.new(facebook_token)
     profile = graph.get_object('me')

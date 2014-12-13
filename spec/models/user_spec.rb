@@ -29,6 +29,8 @@ describe User, type: :model do
 
   it { is_expected.to have_many(:items) }
 
+  it { is_expected.to validate_uniqueness_of(:facebook_id) }
+
   describe '#facebook_authenticate' do
     before(:each) { stub_facebook }
 

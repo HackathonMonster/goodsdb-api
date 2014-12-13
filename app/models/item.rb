@@ -11,4 +11,7 @@
 
 class Item < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
+  has_many :pictures
+
+  validates :owner, presence: true
 end
