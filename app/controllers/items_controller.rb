@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_item
+  before_action :find_item, only: [:show, :add_event]
 
   def index
     @items = current_user.items
@@ -22,6 +22,13 @@ class ItemsController < ApplicationController
     else return json error: 'incorrect event', status: :bad_request
     end
     render json: @event, status: :created
+  end
+
+  def search
+    search_type = params[:type] || 'found'
+    tags = params.require(:tags).is_a?(Array) ? params[:tags] : []
+    @items = Item.search(tags, search_type)
+    render :index
   end
 
   private

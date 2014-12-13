@@ -142,6 +142,61 @@ Use when item is lost or found.
 }
 ```
 
+### GET `/items/search`
+
+Search for items by tags and status.
+
+#### Request
+
+* Needs authentication: yes
+* Query parameters:
+    * `tags[]`: Tags to search for. Required: `true`
+    * `status`: Item status (`lost`|`found`|`lost_and_found`). Required: `false`, default: `found`
+
+Example request:
+
+```
+GET /items/search?tags[]=bar&tags[]=foo&type=lost
+```
+
+#### Response
+
+* Content-Type: `application/json`
+* Status: 200
+
+```json
+[
+    {
+        "id": 1,
+        "name": "the-name",
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00",
+        "tags": [{
+            "id": 1,
+            "name": "tag-1",
+            "createdAt": "2014-12-13T14:49:15+09:00",
+            "updatedAt": "2014-12-13T14:49:15+09:00"
+        }, {
+            "id": 2,
+            "name": "tag-2",
+            "createdAt": "2014-12-13T14:49:15+09:00",
+            "updatedAt": "2014-12-13T14:49:15+09:00"
+        }],
+        "pictures": [{
+            "id": 1,
+            "image_url": "http://mysuperserver/mysuperimage.jp",
+            "createdAt": "2014-12-13T14:49:15+09:00",
+            "updatedAt": "2014-12-13T14:49:15+09:00"
+        }, {
+            "id": 2,
+            "image_url": "http://mysuperserver/mysuperimage2.jp",
+            "createdAt": "2014-12-13T14:49:15+09:00",
+            "updatedAt": "2014-12-13T14:49:15+09:00"
+        }]
+    }
+]
+```
+
 ## Authentication
 
 ### POST `/login`
