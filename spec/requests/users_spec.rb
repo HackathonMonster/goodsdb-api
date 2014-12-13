@@ -18,8 +18,8 @@ describe 'user' do
         expect(body).to have_json_path('displayName')
       end
 
-      it 'should include facebook token' do
-        expect(body).to have_json_path('facebookToken')
+      it 'should include token' do
+        expect(body).to have_json_path('token')
       end
     end
 

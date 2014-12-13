@@ -4,5 +4,5 @@ json.call(user,
 )
 
 if defined?(include_authorization) && include_authorization
-  json.call(user, :facebook_id, :facebook_token)
+  json.call(user, :token)
 end
