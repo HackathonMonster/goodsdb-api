@@ -28,6 +28,8 @@ gem 'figaro'
 # File upload
 gem 'carrierwave'
 
+gem 'puma'
+
 group :development, :test do
   gem 'jazz_hands', github: 'jkrmr/jazz_hands'
   gem 'pry-byebug'

@@ -312,6 +312,7 @@ DEPENDENCIES
   pg
   polyglot_faker
   pry-byebug
+  puma
   rails (= 4.1.8)
   rails-i18n
   rspec-its
