@@ -43,12 +43,12 @@ The token is received on login.
         }],
         "pictures": [{
             "id": 1,
-            "image_url": "http://mysuperserver/mysuperimage.jp",
+            "imageUrl": "http://mysuperserver/mysuperimage.jp",
             "createdAt": "2014-12-13T14:49:15+09:00",
             "updatedAt": "2014-12-13T14:49:15+09:00"
         }, {
             "id": 2,
-            "image_url": "http://mysuperserver/mysuperimage2.jp",
+            "imageUrl": "http://mysuperserver/mysuperimage2.jp",
             "createdAt": "2014-12-13T14:49:15+09:00",
             "updatedAt": "2014-12-13T14:49:15+09:00"
         }]
@@ -106,12 +106,12 @@ data.addPart("item[picture][]", new FileBody(new File("gimmethatfile2.jpg")));
     }],
     "pictures": [{
         "id": 1,
-        "image_url": "http://mysuperserver/gimmethatfile.jp",
+        "imageUrl": "http://mysuperserver/gimmethatfile.jp",
         "createdAt": "2014-12-13T14:49:15+09:00",
         "updatedAt": "2014-12-13T14:49:15+09:00"
     }, {
         "id": 2,
-        "image_url": "http://mysuperserver/gimmethatfile2.jp",
+        "imageUrl": "http://mysuperserver/gimmethatfile2.jp",
         "createdAt": "2014-12-13T14:49:15+09:00",
         "updatedAt": "2014-12-13T14:49:15+09:00"
     }]
@@ -184,12 +184,12 @@ GET /items/search?tags[]=bar&tags[]=foo&type=lost
         }],
         "pictures": [{
             "id": 1,
-            "image_url": "http://mysuperserver/mysuperimage.jp",
+            "imageUrl": "http://mysuperserver/mysuperimage.jp",
             "createdAt": "2014-12-13T14:49:15+09:00",
             "updatedAt": "2014-12-13T14:49:15+09:00"
         }, {
             "id": 2,
-            "image_url": "http://mysuperserver/mysuperimage2.jp",
+            "imageUrl": "http://mysuperserver/mysuperimage2.jp",
             "createdAt": "2014-12-13T14:49:15+09:00",
             "updatedAt": "2014-12-13T14:49:15+09:00"
         }]
