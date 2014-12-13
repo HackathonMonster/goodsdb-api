@@ -2,6 +2,10 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_item
 
+  def index
+    @items = current_user.items
+  end
+
   def create
     @item = current_user.items.build_from_attributes(item_params)
     if @item.save
