@@ -1,0 +1,14 @@
+language: ruby
+cache: bundler
+rvm:
+- 2.1.5
+
+notifications:
+  email: false
+
+before_script:
+  - psql -c "create user goodsdb with password 'foobar' CREATEDB" -U postgres
+  - RAILS_ENV=test bundle exec rake db:create
+
+addons:
+  postgresql: "9.3"
