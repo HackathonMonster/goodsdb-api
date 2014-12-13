@@ -1,9 +1,9 @@
 # == Schema Information
 #
-# Table name: pictures
+# Table name: item_events
 #
 #  id         :integer          not null, primary key
-#  image      :string(255)
+#  status     :integer          default(0), not null
 #  item_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
@@ -11,11 +11,10 @@
 
 require 'rails_helper'
 
-describe Picture, type: :model do
-  subject(:picture) { create(:picture) }
+describe ItemEvent, type: :model do
+  subject(:item_event) { create(:item_event) }
 
-  it { is_expected.to respond_to(:image) }
+  it { is_expected.to respond_to(:status) }
 
   it { is_expected.to belong_to(:item) }
-  it { is_expected.to validate_presence_of(:item) }
 end

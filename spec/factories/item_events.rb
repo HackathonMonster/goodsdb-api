@@ -1,17 +1,17 @@
 # == Schema Information
 #
-# Table name: pictures
+# Table name: item_events
 #
 #  id         :integer          not null, primary key
-#  image      :string(255)
+#  status     :integer          default(0), not null
 #  item_id    :integer
 #  created_at :datetime
 #  updated_at :datetime
 #
 
 FactoryGirl.define do
-  factory :picture do
-    sequence(:image) { |n| "http://example.com/dummy-url-#{n}" }
+  factory :item_event do
+    status 0
     item
   end
 end

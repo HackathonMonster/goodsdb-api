@@ -6,6 +6,7 @@ gem 'rails-i18n'
 
 # Database
 gem 'pg'
+gem 'flag_shih_tzu'
 
 # Assets
 gem 'sass-rails', '~> 4.0.3'
