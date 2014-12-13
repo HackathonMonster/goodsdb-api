@@ -19,7 +19,7 @@ require_relative '../support/dummy'
 include SpecHelpers::Dummy
 
 FactoryGirl.define do
-  factory :user, aliases: [:author] do
+  factory :user, aliases: [:owner] do
     sequence(:first_name) { |n| "sample-first-name-#{n}" }
     sequence(:last_name)  { |n| "sample-last-name-#{n}" }
     sequence(:display_name) { |n| "sample-display-name-#{n}" }

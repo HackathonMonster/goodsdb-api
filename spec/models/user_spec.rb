@@ -27,6 +27,8 @@ describe User, type: :model do
   it { is_expected.to respond_to(:facebook_id) }
   it { is_expected.to respond_to(:facebook_token) }
 
+  it { is_expected.to have_many(:items) }
+
   describe '#facebook_authenticate' do
     before(:each) { stub_facebook }
 
