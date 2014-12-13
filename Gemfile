@@ -19,6 +19,9 @@ group :development, :test do
   gem 'jazz_hands', github: 'jkrmr/jazz_hands'
   gem 'pry-byebug'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'polyglot_faker'
 end
 
 group :development do
