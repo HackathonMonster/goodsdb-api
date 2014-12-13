@@ -29,6 +29,7 @@ class Item < ActiveRecord::Base
 
   scope :found, -> { with_events.merge(ItemEvent.found) }
   scope :lost, -> { with_events.merge(ItemEvent.lost) }
+  scope :lost_and_found, -> { found.merge(ItemEvent.lost) }
 
   scope :with_any_tag, (lambda do |tags|
     joins(:tags)
@@ -42,13 +43,14 @@ class Item < ActiveRecord::Base
       tags = item.tags.map(&:name) # avoid DB query
       item.score = (tags.to_set & tags).size
     end
-    items.sort { |x, y| x.score <=> y.score }
+    items.sort { |x, y| y.score <=> x.score }
   end
 
   def self.search(tags, status = 'any')
     case status
     when 'lost' then search_lost(tags)
     when 'found' then search_found(tags)
+    when 'lost_and_found' then search_lost_and_found(tags)
     else search_items(with_events, tags)
     end
   end
@@ -59,6 +61,10 @@ class Item < ActiveRecord::Base
 
   def self.search_lost(tags)
     search_items(lost, tags)
+  end
+
+  def self.search_lost_and_found(tags)
+    search_items(lost_and_found, tags)
   end
 
   def self.build_from_attributes(params)
