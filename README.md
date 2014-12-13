@@ -16,7 +16,7 @@ The token is received on login.
 
 #### Request
 
-* Needs authorization: yes
+* Needs authentication: yes
 
 #### Response
 
@@ -60,7 +60,7 @@ The token is received on login.
 
 #### Request
 
-* Needs authorization: yes
+* Needs authentication: yes
 * Content-Type: `multipart/form-data`
 
 ```
@@ -118,13 +118,37 @@ data.addPart("item[picture][]", new FileBody(new File("gimmethatfile2.jpg")));
 }
 ```
 
+### POST `/items/:id/add_event`
+
+Use when item is lost or found.
+
+#### Request
+
+* Needs authentication
+* Content-Type: `application/json`
+
+#### Response
+
+* Content-Type: `application/json`
+* Status: 201
+
+```json
+{
+   "id": 9,
+   "status": 3,
+   "item_id": 1,
+   "created_at": "2014-12-13T11:33:19.759Z",
+   "updated_at": "2014-12-13T11:33:37.493Z"
+}
+```
+
 ## Authentication
 
 ### POST `/login`
 
 #### Request
 
-* Needs authorization: no
+* Needs authentication: no
 * Content-Type: `application/json`
 
 ```json
