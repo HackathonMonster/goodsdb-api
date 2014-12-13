@@ -15,9 +15,32 @@ class Item < ActiveRecord::Base
   has_many :pictures
   has_many :item_events
 
-  has_and_belongs_to_many :tags
+  attr_accessor :score
+
+  has_and_belongs_to_many :tags, -> { uniq }
 
   validates :owner, presence: true
+
+  scope :with_events, (lambda do
+    joins(:item_events)
+      .group(ItemEvent.arel_table[:item_id], arel_table[:id])
+      .having(ItemEvent.arel_table[:item_id].count.gt(0))
+  end)
+
+  scope :with_any_tag, (lambda do |tags|
+    joins(:tags)
+      .group(arel_table[:id], Tag.arel_table[:name], Tag.arel_table[:id])
+      .having(Tag.arel_table[:name].in(tags))
+  end)
+
+  def self.search(tags)
+    items = with_events.with_any_tag(tags).includes(:tags)
+    items.each do |item|
+      tags = item.tags.map(&:name) # avoid DB query
+      item.score = (tags.to_set & tags).size
+    end
+    items.sort { |x, y| x.score <=> y.score }
+  end
 
   def self.build_from_attributes(params)
     tags = params.delete :tags
