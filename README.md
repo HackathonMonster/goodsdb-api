@@ -1,5 +1,15 @@
 # goodsdb-api [![Build Status](https://travis-ci.org/HackathonMonster/goodsdb-api.svg?branch=master)](https://travis-ci.org/HackathonMonster/goodsdb-api)
 
+## About authentication
+
+To authenticate, the request should contain the following header:
+
+```
+X-Token: USER_TOKEN
+```
+
+The token is received on login.
+
 ## Items
 
 ### `GET /items`
@@ -136,8 +146,7 @@ data.addPart("items[picture][]", new FileBody(new File("gimmethatfile2.jpg")));
     "last_name": "last name",
     "display_name": "display name",
     "profile_picture": "https://www.facebook.com/mypicture.jpg",
-    "facebook_id": "67123214",
-    "facebook_token": "jkwqejh71y273h21uehwje1237wheqwjhe217312",
+    "token": "jkwqejh71y273h21uehwje1237wheqwjhe217312",
     "created_at": "2014-12-13T14:49:15+09:00",
     "updated_at": "2014-12-13T14:49:15+09:00"
 }
