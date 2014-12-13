@@ -17,3 +17,5 @@
 
 /public/uploads
 /.capistrano
+
+/config/application.yml

@@ -13,7 +13,7 @@ set :log_level, :debug
 # Default value for :pty is false
 # set :pty, true
 
-set :linked_files, %w()
+set :linked_files, %w(config/application.yml)
 
 set :linked_dirs, %w(bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/assets)
 
