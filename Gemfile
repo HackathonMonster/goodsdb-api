@@ -27,6 +27,7 @@ gem 'figaro'
 
 # File upload
 gem 'carrierwave'
+gem 'cloudinary'
 
 gem 'puma'
 
