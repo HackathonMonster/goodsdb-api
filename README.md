@@ -67,8 +67,8 @@ The token is received on login.
 item[name] = "the-name"
 item[tags][] = "tag-1"
 item[tags][] = "tag-2"
-item[picture][] = FILE_1_CONTENT
-item[picture][] = FILE_2_CONTENT
+item[pictures][] = FILE_1_CONTENT
+item[pictures][] = FILE_2_CONTENT
 ```
 
 Android sample:
@@ -78,8 +78,8 @@ MultipartEntity data = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE)
 data.addPart("item[name]", new StringBody("the-name"));
 data.addPart("item[tags][]", new StringBody("tag-1"));
 data.addPart("item[tags][]", new StringBody("tag-2"));
-data.addPart("item[picture][]", new FileBody(new File("gimmethatfile.jpg")));
-data.addPart("item[picture][]", new FileBody(new File("gimmethatfile2.jpg")));
+data.addPart("item[pictures][]", new FileBody(new File("gimmethatfile.jpg")));
+data.addPart("item[pictures][]", new FileBody(new File("gimmethatfile2.jpg")));
 ```
 
 #### Response
