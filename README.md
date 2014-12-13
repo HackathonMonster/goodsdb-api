@@ -18,29 +18,29 @@
     {
         "id": 1,
         "name": "the-name",
-        "createdAt", "2014-12-13T14:49:15+09:00",
-        "updatedAt", "2014-12-13T14:49:15+09:00",
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00",
         "tags": [{
             "id": 1,
             "name": "tag-1",
-            "createdAt", "2014-12-13T14:49:15+09:00",
-            "updatedAt", "2014-12-13T14:49:15+09:00"
+            "createdAt": "2014-12-13T14:49:15+09:00",
+            "updatedAt": "2014-12-13T14:49:15+09:00"
         }, {
             "id": 2,
             "name": "tag-2",
-            "createdAt", "2014-12-13T14:49:15+09:00",
-            "updatedAt", "2014-12-13T14:49:15+09:00"
+            "createdAt": "2014-12-13T14:49:15+09:00",
+            "updatedAt": "2014-12-13T14:49:15+09:00"
         }],
         "pictures": [{
             "id": 1,
             "url": "http://mysuperserver/mysuperimage.jp",
-            "createdAt", "2014-12-13T14:49:15+09:00",
-            "updatedAt", "2014-12-13T14:49:15+09:00"
+            "createdAt": "2014-12-13T14:49:15+09:00",
+            "updatedAt": "2014-12-13T14:49:15+09:00"
         }, {
             "id": 2,
             "url": "http://mysuperserver/mysuperimage2.jp",
-            "createdAt", "2014-12-13T14:49:15+09:00",
-            "updatedAt", "2014-12-13T14:49:15+09:00"
+            "createdAt": "2014-12-13T14:49:15+09:00",
+            "updatedAt": "2014-12-13T14:49:15+09:00"
         }]
     }
 ]
@@ -81,29 +81,29 @@ data.addPart("items[picture][]", new FileBody(new File("gimmethatfile2.jpg")));
 {
     "id": 1,
     "name": "the-name",
-    "createdAt", "2014-12-13T14:49:15+09:00",
-    "updatedAt", "2014-12-13T14:49:15+09:00",
+    "createdAt": "2014-12-13T14:49:15+09:00",
+    "updatedAt": "2014-12-13T14:49:15+09:00",
     "tags": [{
         "id": 1,
         "name": "tag-1",
-        "createdAt", "2014-12-13T14:49:15+09:00",
-        "updatedAt", "2014-12-13T14:49:15+09:00"
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00"
     }, {
         "id": 2,
         "name": "tag-2",
-        "createdAt", "2014-12-13T14:49:15+09:00",
-        "updatedAt", "2014-12-13T14:49:15+09:00"
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00"
     }],
     "pictures": [{
         "id": 1,
         "url": "http://mysuperserver/gimmethatfile.jp",
-        "createdAt", "2014-12-13T14:49:15+09:00",
-        "updatedAt", "2014-12-13T14:49:15+09:00"
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00"
     }, {
         "id": 2,
         "url": "http://mysuperserver/gimmethatfile2.jp",
-        "createdAt", "2014-12-13T14:49:15+09:00",
-        "updatedAt", "2014-12-13T14:49:15+09:00"
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00"
     }]
 }
 ```
