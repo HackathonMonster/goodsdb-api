@@ -9,6 +9,15 @@ defaults: &defaults
         first_name: 'Jack'
         last_name: 'Joe'
 
+  cors:
+    origin_regex: .*
+    headers:
+      'Access-Control-Expose-Headers': 'ETag'
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS, HEAD'
+      'Access-Control-Allow-Headers': '*,x-requested-with,Content-Type,If-Modified-Since,If-None-Match,Auth-User-Token,X-Token'
+      'Access-Control-Max-Age': '86400'
+      'Access-Control-Allow-Credentials': 'true'
+
 development:
   <<: *defaults
 
