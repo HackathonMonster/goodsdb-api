@@ -1,18 +1,20 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_item, only: [:show, :add_event]
+  before_action :find_item, only: [:show, :add_event, :update]
+  before_action :check_user, only: [:update]
 
   def index
-    @items = current_user.items
+    @items = current_user.items.includes(:tags, :pictures)
   end
 
   def create
-    @item = current_user.items.build_from_attributes(item_params)
-    if @item.save
-      render :show
-    else
-      render json: @item.errors
-    end
+    @item = current_user.items.build_from_attributes(item_param)
+    render_or_error
+  end
+
+  def update
+    @item.assign_params(item_param)
+    render_or_error
   end
 
   def add_event
@@ -25,16 +27,29 @@ class ItemsController < ApplicationController
   end
 
   def search
+    base_relation = params[:all_users] ? Item : current_user.items
     search_type = params[:type] || 'found'
     tags = params.require(:tags).is_a?(Array) ? params[:tags] : []
-    @items = Item.search(tags, search_type)
+    @items = base_relation.with_pictures.search(tags, search_type)
     render :index
   end
 
   private
 
-  def item_params
+  def render_or_error
+    if @item.save
+      render :show
+    else
+      render json: @item.errors
+    end
+  end
+
+  def item_param
     params.require(:item)
+  end
+
+  def check_user
+    fail GoodsDbApi::AuthorizationError, 'not authorized' if current_user.id != @item.owner_id
   end
 
   def find_item

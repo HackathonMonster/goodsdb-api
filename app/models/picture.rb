@@ -21,7 +21,7 @@ class Picture < ActiveRecord::Base
 
   def self.build_all(images, item)
     return none if images.blank?
-    images.each do |image|
+    images.map do |image|
       item.pictures.build(image: image)
     end
   end

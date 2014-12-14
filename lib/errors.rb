@@ -4,4 +4,7 @@ module GoodsDbApi
 
   class AuthenticationError < BaseError
   end
+
+  class AuthorizationError < BaseError
+  end
 end

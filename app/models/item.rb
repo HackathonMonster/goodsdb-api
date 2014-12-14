@@ -31,6 +31,8 @@ class Item < ActiveRecord::Base
   scope :lost, -> { with_events.merge(ItemEvent.lost) }
   scope :lost_and_found, -> { found.merge(ItemEvent.lost) }
 
+  scope :with_pictures, -> { includes(:pictures).group(Picture.arel_table[:id]) }
+
   scope :with_any_tag, (lambda do |tags|
     joins(:tags)
       .group(arel_table[:id], Tag.arel_table[:name], Tag.arel_table[:id])
@@ -51,7 +53,7 @@ class Item < ActiveRecord::Base
     when 'lost' then search_lost(tags)
     when 'found' then search_found(tags)
     when 'lost_and_found' then search_lost_and_found(tags)
-    else search_items(with_events, tags)
+    else search_items(all, tags)
     end
   end
 
@@ -68,12 +70,17 @@ class Item < ActiveRecord::Base
   end
 
   def self.build_from_attributes(params)
-    tags = params.delete :tags
-    pictures = params.delete :pictures
     item = new(params.permit(:name))
-    item.tags = Tag.from_names(tags)
-    Picture.build_all(pictures, item)
+    item.assign_params(params)
     item
+  end
+
+  def assign_params(params)
+    new_tags = params.delete :tags
+    new_pictures = params.delete :pictures
+    assign_attributes(params.permit(:name))
+    self.tags = Tag.from_names(new_tags) unless new_tags.nil?
+    self.pictures = Picture.build_all(new_pictures, self) unless new_pictures.nil?
   end
 
   def trigger_lost
