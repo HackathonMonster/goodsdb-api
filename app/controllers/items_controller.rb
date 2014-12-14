@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
 
   def search
     base_relation = params[:all_users] ? Item : current_user.items
-    search_type = params[:type] || 'found'
+    search_type = params[:type] || 'any'
     tags = params.require(:tags).is_a?(Array) ? params[:tags] : []
     @items = base_relation.with_pictures.search(tags, search_type)
     current_user.add_status(@items)
