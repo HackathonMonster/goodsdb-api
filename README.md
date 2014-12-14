@@ -184,7 +184,13 @@ data.addPart("item[pictures][]", new FileBody(new File("gimmethatfile2.jpg")));
 
 #### Response
 
-* Status: 204
+* Status: 200
+
+```json
+{
+    "success": true
+}
+```
 
 ### POST `/items/:id/add_event`
 
@@ -219,7 +225,7 @@ Search for items by tags and status.
 * Needs authentication: yes
 * Query parameters:
     * `tags[]`: Tags to search for. Required: `true`
-    * `status`: Item status (`lost`|`found`|`lost_and_found`). Required: `false`, default: `found`
+    * `type`: Item status (`lost`|`found`|`lost_and_found`). Required: `false`, default: `found`
 
 Example request:
 
@@ -276,6 +282,12 @@ GET /items/search?tags[]=bar&tags[]=foo&type=lost
 * Content-Type: `application/json`
 * Status: 204
 
+```json
+{
+    "success": true
+}
+```
+
 ### DELETE `/items/:id/like`
 
 * Needs authentication: yes
@@ -283,7 +295,14 @@ GET /items/search?tags[]=bar&tags[]=foo&type=lost
 #### Response
 
 * Content-Type: `application/json`
-* Status: 204
+* Status: 200
+
+```json
+{
+    "success": true
+}
+```
+
 
 ## Authentication
 

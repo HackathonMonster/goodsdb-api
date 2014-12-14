@@ -14,10 +14,10 @@ class ItemsController < ApplicationController
   end
 
   def search
-    base_relation = params[:all_users] ? Item : current_user.items
+    base_relation = params[:all_users] ? Item.all : current_user.items
     search_type = params[:type] || 'any'
-    tags = params.require(:tags).is_a?(Array) ? params[:tags] : []
-    @items = base_relation.with_pictures.search(tags, search_type)
+    tags = params[:tags].is_a?(Array) ? params[:tags] : []
+    @items = base_relation.with_pictures.filter_status(search_type).filter_tags(tags)
     current_user.add_status(@items)
     render :index
   end
@@ -29,12 +29,12 @@ class ItemsController < ApplicationController
 
   def like
     current_user.likes @item
-    head :no_content
+    render json: { success: true }
   end
 
   def unlike
     current_user.unlike @item
-    head :no_content
+    render json: { success: true }
   end
 
   def add_event
@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
 
   def destroy
     @item.destroy
-    head :no_content
+    render json: { success: true }
   end
 
   private

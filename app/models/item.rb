@@ -44,10 +44,10 @@ class Item < ActiveRecord::Base
     joins(:tags).merge(Tag.where(Tag.arel_table[:name].in(tags)))
   end)
 
-  def self.search_items(items, tags)
+  def self.filter_tags(tags)
     tags = tags.reject(&:blank?)
-    return items.includes(:tags).joins(:tags) if tags.empty?
-    items = items.with_any_tag(tags).includes(:tags)
+    return includes(:tags).joins(:tags) if tags.empty?
+    items = with_any_tag(tags).includes(:tags)
     items.each do |item|
       tags = item.tags.map(&:name) # avoid DB query
       item.score = (tags.to_set & tags).size
@@ -55,25 +55,13 @@ class Item < ActiveRecord::Base
     items.sort { |x, y| y.score <=> x.score }
   end
 
-  def self.search(tags, status = 'any')
+  def self.filter_status(status = 'any')
     case status
-    when 'lost' then search_lost(tags)
-    when 'found' then search_found(tags)
-    when 'lost_and_found' then search_lost_and_found(tags)
-    else search_items(all, tags)
+    when 'lost' then lost
+    when 'found' then found
+    when 'lost_and_found' then lost_and_found
+    else all
     end
-  end
-
-  def self.search_found(tags)
-    search_items(found, tags)
-  end
-
-  def self.search_lost(tags)
-    search_items(lost, tags)
-  end
-
-  def self.search_lost_and_found(tags)
-    search_items(lost_and_found, tags)
   end
 
   def self.build_from_attributes(params)
