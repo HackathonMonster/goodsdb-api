@@ -28,6 +28,13 @@ gem 'figaro'
 # File upload
 gem 'carrierwave'
 gem 'cloudinary'
+gem 'carrierwave_backgrounder'
+
+# Workers
+gem 'sidekiq'
+
+# Misc
+gem 'docomo_image_recognition'
 
 gem 'puma'
 

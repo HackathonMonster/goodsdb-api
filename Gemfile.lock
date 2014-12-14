@@ -81,6 +81,8 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave_backgrounder (0.4.1)
+      carrierwave (~> 0.5)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     cloudinary (1.0.79)
@@ -96,8 +98,10 @@ GEM
     coffee-script-source (1.8.0)
     colorize (0.7.4)
     columnize (0.9.0)
+    connection_pool (2.1.0)
     coolline (0.5.0)
       unicode_utils (~> 1.4)
+    curb (0.8.6)
     database_cleaner (1.3.0)
     debase (0.1.1)
       debase-ruby_core_source
@@ -106,6 +110,8 @@ GEM
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     diffy (3.0.7)
+    docomo_image_recognition (0.1.1)
+      curb (~> 0.8)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -224,6 +230,9 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    redis (3.2.0)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
@@ -261,6 +270,12 @@ GEM
     settingslogic (2.0.9)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
+    sidekiq (3.3.0)
+      celluloid (>= 0.16.0)
+      connection_pool (>= 2.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     slop (3.6.0)
     spring (1.2.0)
     spring-commands-rspec (1.0.3)
@@ -303,10 +318,12 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-puma
   carrierwave
+  carrierwave_backgrounder
   cloudinary
   coffee-rails (~> 4.0.0)
   database_cleaner
   debase
+  docomo_image_recognition
   factory_girl_rails
   faker
   figaro
@@ -330,6 +347,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.3)
   settingslogic
   shoulda-matchers
+  sidekiq
   spring
   spring-commands-rspec
   uglifier (>= 1.3.0)
