@@ -44,6 +44,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    acts_as_votable (0.10.0)
     addressable (2.3.6)
     annotate (2.6.5)
       activerecord (>= 2.3.0)
@@ -314,6 +315,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_votable
   annotate
   capistrano
   capistrano-bundler

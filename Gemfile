@@ -35,6 +35,7 @@ gem 'sidekiq'
 
 # Misc
 gem 'docomo_image_recognition'
+gem 'acts_as_votable'
 
 gem 'puma'
 

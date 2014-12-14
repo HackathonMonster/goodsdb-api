@@ -28,6 +28,8 @@ The token is received on login.
     {
         "id": 1,
         "name": "the-name",
+        "liked": true,
+        "likesCount": 1,
         "createdAt": "2014-12-13T14:49:15+09:00",
         "updatedAt": "2014-12-13T14:49:15+09:00",
         "tags": [{
@@ -91,6 +93,8 @@ data.addPart("item[pictures][]", new FileBody(new File("gimmethatfile2.jpg")));
 {
     "id": 1,
     "name": "the-name",
+    "liked": false,
+    "likesCount": 0,
     "createdAt": "2014-12-13T14:49:15+09:00",
     "updatedAt": "2014-12-13T14:49:15+09:00",
     "tags": [{
@@ -143,6 +147,8 @@ data.addPart("item[pictures][]", new FileBody(new File("gimmethatfile2.jpg")));
 {
     "id": 1,
     "name": "new name",
+    "liked": true,
+    "likesCount": 1,
     "createdAt": "2014-12-13T14:49:15+09:00",
     "updatedAt": "2014-12-13T14:49:15+09:00",
     "tags": [{
@@ -221,6 +227,8 @@ GET /items/search?tags[]=bar&tags[]=foo&type=lost
     {
         "id": 1,
         "name": "the-name",
+        "liked": true,
+        "likesCount": 1,
         "createdAt": "2014-12-13T14:49:15+09:00",
         "updatedAt": "2014-12-13T14:49:15+09:00",
         "tags": [{
@@ -248,6 +256,24 @@ GET /items/search?tags[]=bar&tags[]=foo&type=lost
     }
 ]
 ```
+
+### POST `/items/:id/like`
+
+* Needs authentication: yes
+
+#### Response
+
+* Content-Type: `application/json`
+* Status: 204
+
+### DELETE `/items/:id/like`
+
+* Needs authentication: yes
+
+#### Response
+
+* Content-Type: `application/json`
+* Status: 204
 
 ## Authentication
 

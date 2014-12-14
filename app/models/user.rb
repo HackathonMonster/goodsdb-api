@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
 
   before_create :generate_token
 
+  acts_as_voter
+
   def self.facebook_authenticate(facebook_id, facebook_token)
     graph = Koala::Facebook::API.new(facebook_token)
     profile = graph.get_object('me')
@@ -32,6 +34,11 @@ class User < ActiveRecord::Base
     u.update_attribute(:facebook_token, facebook_token) && u
   rescue Koala::Facebook::AuthenticationError
     false
+  end
+
+  def add_status(items)
+    vote_ids = votes.pluck(:votable_id).to_set
+    items.each { |i| i.liked = vote_ids.include?(i.id) }
   end
 
   private

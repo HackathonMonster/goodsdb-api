@@ -2,11 +2,12 @@
 #
 # Table name: items
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  owner_id   :integer
-#  created_at :datetime
-#  updated_at :datetime
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  owner_id        :integer
+#  created_at      :datetime
+#  updated_at      :datetime
+#  cached_votes_up :integer          default(0), not null
 #
 
 class Item < ActiveRecord::Base
@@ -15,11 +16,13 @@ class Item < ActiveRecord::Base
   has_many :pictures
   has_many :item_events
 
-  attr_accessor :score
+  attr_accessor :score, :liked
 
   has_and_belongs_to_many :tags, -> { uniq }
 
   validates :owner, presence: true
+
+  acts_as_votable
 
   scope :with_events, (lambda do
     joins(:item_events)
@@ -73,6 +76,10 @@ class Item < ActiveRecord::Base
     item = new(params.permit(:name))
     item.assign_params(params)
     item
+  end
+
+  def likes_count
+    cached_votes_up
   end
 
   def assign_params(params)

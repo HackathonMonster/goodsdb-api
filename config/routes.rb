@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :items, defaults: { format: :json } do
-    post :add_event, on: :member
+    member do
+      post :add_event
+      post :like
+      delete :like, to: :unlike
+    end
     get :search, on: :collection
   end
 
