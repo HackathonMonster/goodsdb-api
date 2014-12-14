@@ -24,7 +24,7 @@ class Item < ActiveRecord::Base
 
   acts_as_votable
 
-  has_many :user_votes, -> { where(voter_type: 'User') }, foreign_key: 'voter_id', class_name: ActsAsVotable::Vote
+  has_many :user_votes, -> { where(voter_type: 'User') }, foreign_key: 'votable_id', class_name: ActsAsVotable::Vote
 
   scope :with_events, (lambda do
     joins(:item_events)
