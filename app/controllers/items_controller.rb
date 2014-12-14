@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = current_user.items.build_from_attributes(item_param)
-    render_or_error
+    render_or_error(:created)
   end
 
   def update
@@ -36,9 +36,9 @@ class ItemsController < ApplicationController
 
   private
 
-  def render_or_error
+  def render_or_error(status = :ok)
     if @item.save
-      render :show
+      render :show, status: status
     else
       render json: @item.errors
     end

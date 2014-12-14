@@ -118,6 +118,58 @@ data.addPart("item[pictures][]", new FileBody(new File("gimmethatfile2.jpg")));
 }
 ```
 
+### PUT `/items/:id`
+
+#### Request
+
+* Needs authentication
+* Content-Type: `application/json`
+
+```json
+{
+    "item": {
+        "name": "new name",
+        "tags": ["tag-1", "tag-3"]
+    }
+}
+```
+
+#### Response
+
+* Content-Type: `application/json`
+* Status: 200
+
+```json
+{
+    "id": 1,
+    "name": "new name",
+    "createdAt": "2014-12-13T14:49:15+09:00",
+    "updatedAt": "2014-12-13T14:49:15+09:00",
+    "tags": [{
+        "id": 1,
+        "name": "tag-1",
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00"
+    }, {
+        "id": 3,
+        "name": "tag-3",
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00"
+    }],
+    "pictures": [{
+        "id": 1,
+        "imageUrl": "http://mysuperserver/gimmethatfile.jp",
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00"
+    }, {
+        "id": 2,
+        "imageUrl": "http://mysuperserver/gimmethatfile2.jp",
+        "createdAt": "2014-12-13T14:49:15+09:00",
+        "updatedAt": "2014-12-13T14:49:15+09:00"
+    }]
+}
+```
+
 ### POST `/items/:id/add_event`
 
 Use when item is lost or found.
