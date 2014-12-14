@@ -45,6 +45,8 @@ class Item < ActiveRecord::Base
   end)
 
   def self.search_items(items, tags)
+    tags = tags.reject(&:blank?)
+    return items.includes(:tags).joins(:tags) if tags.empty?
     items = items.with_any_tag(tags).includes(:tags)
     items.each do |item|
       tags = item.tags.map(&:name) # avoid DB query
