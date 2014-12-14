@@ -26,7 +26,7 @@ class Item < ActiveRecord::Base
 
   scope :with_events, (lambda do
     joins(:item_events)
-      .group(ItemEvent.arel_table[:item_id], arel_table[:id])
+      .group(ItemEvent.arel_table[:item_id], arel_table[:id], Tag.arel_table[:id])
       .having(ItemEvent.arel_table[:item_id].count.gt(0))
   end)
 
@@ -34,12 +34,14 @@ class Item < ActiveRecord::Base
   scope :lost, -> { with_events.merge(ItemEvent.lost) }
   scope :lost_and_found, -> { found.merge(ItemEvent.lost) }
 
-  scope :with_pictures, -> { includes(:pictures).group(Picture.arel_table[:id]) }
+  scope :with_pictures, (lambda do
+    includes(:pictures).group(
+      Picture.arel_table[:id], arel_table[:id], Tag.arel_table[:id]
+    )
+  end)
 
   scope :with_any_tag, (lambda do |tags|
-    joins(:tags)
-      .group(arel_table[:id], Tag.arel_table[:name], Tag.arel_table[:id])
-      .having(Tag.arel_table[:name].in(tags))
+    joins(:tags).merge(Tag.where(Tag.arel_table[:name].in(tags)))
   end)
 
   def self.search_items(items, tags)
