@@ -27,7 +27,7 @@ class Picture < ActiveRecord::Base
   end
 
   def image_info
-    @image_info ||= JSON.parse(info)
+    @image_info ||= JSON.parse(info || '{}')
   end
 
   private
