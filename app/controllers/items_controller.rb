@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_item, except: [:index, :create, :search]
-  before_action :check_user, only: [:update]
+  before_action :check_user, only: [:update, :destroy]
 
   def index
     @items = current_user.items.includes(:tags, :pictures)
@@ -44,6 +44,11 @@ class ItemsController < ApplicationController
     else return json error: 'incorrect event', status: :bad_request
     end
     render json: @event, status: :created
+  end
+
+  def destroy
+    @item.destroy
+    head :no_content
   end
 
   private

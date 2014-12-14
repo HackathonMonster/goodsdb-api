@@ -176,13 +176,23 @@ data.addPart("item[pictures][]", new FileBody(new File("gimmethatfile2.jpg")));
 }
 ```
 
+### DELETE `/items/:id`
+
+#### Request
+
+* Needs authentication: yes
+
+#### Response
+
+* Status: 204
+
 ### POST `/items/:id/add_event`
 
 Use when item is lost or found.
 
 #### Request
 
-* Needs authentication
+* Needs authentication: yes
 * Content-Type: `application/json`
 
 #### Response
