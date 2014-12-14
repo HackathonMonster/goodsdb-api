@@ -24,6 +24,8 @@ class Item < ActiveRecord::Base
 
   acts_as_votable
 
+  has_many :user_votes, -> { where(voter_type: 'User') }, foreign_key: 'voter_id', class_name: ActsAsVotable::Vote
+
   scope :with_events, (lambda do
     joins(:item_events)
       .group(ItemEvent.arel_table[:item_id], arel_table[:id], Tag.arel_table[:id])
@@ -43,6 +45,8 @@ class Item < ActiveRecord::Base
   scope :with_any_tag, (lambda do |tags|
     joins(:tags).merge(Tag.where(Tag.arel_table[:name].in(tags)))
   end)
+
+  scope :liked_by, -> (user) { joins(:user_votes).merge(user.votes) }
 
   def self.filter_tags(tags)
     tags = tags.reject(&:blank?)

@@ -17,7 +17,9 @@ class ItemsController < ApplicationController
     base_relation = params[:all_users] ? Item.all : current_user.items
     search_type = params[:type] || 'any'
     tags = params[:tags].is_a?(Array) ? params[:tags] : []
-    @items = base_relation.with_pictures.filter_status(search_type).filter_tags(tags)
+    @items = base_relation.with_pictures
+    @items = @items.liked_by(current_user) if params[:favorite]
+    @items = @items.filter_status(search_type).filter_tags(tags)
     current_user.add_status(@items)
     render :index
   end
